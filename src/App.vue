@@ -1,13 +1,23 @@
 <template>
-  <div id="app">
-    <SchafkopfGame />
-  </div>
+  <v-app>
+    <v-container>
+      <v-toolbar color="primary" dark>
+        <v-toolbar-title>Schafkopf Spiel</v-toolbar-title>
+      </v-toolbar>
+      <v-row justify="center">
+        <v-col cols="12" sm="8" md="6">
+          <schafkopf-game />
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-app>
 </template>
 
 <script>
-import SchafkopfGame from './components/SchafkopfGame.vue'; // Обновите импорт
+import SchafkopfGame from './components/SchafkopfGame.vue';
 
 export default {
+  name: 'App',
   components: {
     SchafkopfGame,
   },
