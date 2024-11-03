@@ -9,6 +9,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write  # Ensure that the action can write to the repository
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4.2.2  # Updated to v4
@@ -30,4 +33,5 @@ jobs:
         with:
           branch: gh-pages  # The branch the action will deploy to.
           folder: dist  # The folder the action will deploy.
-          token: ${{ secrets.GITHUB_TOKEN }}  # GitHub token for authentication
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN  }}  # GitHub token for authentication
+          force: true  # Force push to the gh-pages branch
