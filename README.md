@@ -1,5 +1,7 @@
 # schafkopf
 
+Created with ChatGPT: https://chatgpt.com/share/6727dc35-9804-800d-9aff-fdaf46663344
+
 ## Project setup
 ```
 npm install
