@@ -1,54 +1,83 @@
 <template>
-  <v-app>
-    <v-container>
-      <v-row class="justify-center">
-        <v-col cols="12" class="text-center">
-          <v-toolbar>
-            <v-toolbar-title>Schafkopf Spiel</v-toolbar-title>
-          </v-toolbar>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col v-for="(player, index) in players" :key="index" cols="3" class="player-column">
-          <v-card>
-            <v-card-title class="text-h6">{{ player.name }}</v-card-title>
-            <v-card-text>
-              <v-row>
-                <v-col v-for="(card, cardIndex) in player.hand" :key="cardIndex" cols="6">
-                  <v-btn @click="playCard(card)" class="card-button">
-                    {{ card.rank }} {{ card.suit }}
-                  </v-btn>
-                </v-col>
-              </v-row>
-            </v-card-text>
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-container>
-  </v-app>
+  <v-container>
+    <v-row justify="space-between" align="center">
+      <v-col cols="2" class="text-center">
+        <v-card>
+          <v-card-title class="text-h6">{{ players[0].name }}</v-card-title>
+          <v-card-text>
+            <v-row>
+              <v-col v-for="(card, cardIndex) in players[0].hand" :key="cardIndex" cols="6">
+                <v-btn @click="playCard(card)" class="card-button">
+                  {{ card.rank }} {{ card.suit }}
+                </v-btn>
+              </v-col>
+            </v-row>
+          </v-card-text>
+        </v-card>
+      </v-col>
+
+      <v-col cols="8" class="text-center">
+        <v-card>
+          <v-card-title class="text-h6">{{ players[1].name }}</v-card-title>
+          <v-card-text>
+            <v-row>
+              <v-col v-for="(card, cardIndex) in players[1].hand" :key="cardIndex" cols="4">
+                <v-btn @click="playCard(card)" class="card-button">
+                  {{ card.rank }} {{ card.suit }}
+                </v-btn>
+              </v-col>
+            </v-row>
+          </v-card-text>
+        </v-card>
+      </v-col>
+
+      <v-col cols="2" class="text-center">
+        <v-card>
+          <v-card-title class="text-h6">{{ players[2].name }}</v-card-title>
+          <v-card-text>
+            <v-row>
+              <v-col v-for="(card, cardIndex) in players[2].hand" :key="cardIndex" cols="6">
+                <v-btn @click="playCard(card)" class="card-button">
+                  {{ card.rank }} {{ card.suit }}
+                </v-btn>
+              </v-col>
+            </v-row>
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+
+    <v-row justify="center">
+      <v-col cols="12" class="text-center">
+        <v-card>
+          <v-card-title class="text-h6">{{ players[3].name }}</v-card-title>
+          <v-card-text>
+            <v-row>
+              <v-col v-for="(card, cardIndex) in players[3].hand" :key="cardIndex" cols="4">
+                <v-btn @click="playCard(card)" class="card-button">
+                  {{ card.rank }} {{ card.suit }}
+                </v-btn>
+              </v-col>
+            </v-row>
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
-// import GamePlayer from './GamePlayer.vue';
-
 export default {
   name: 'SchafkopfGame',
-/*
-  components: {
-    GamePlayer,
-  },
-*/
   data() {
     return {
       players: [
-        { name: 'Spieler 1', hand: [] },
-        { name: 'Spieler 2', hand: [] },
-        { name: 'Spieler 3', hand: [] },
-        { name: 'Spieler 4', hand: [] },
+        { name: 'Player 1', hand: [] },
+        { name: 'Player 2', hand: [] },
+        { name: 'Player 3', hand: [] },
+        { name: 'You', hand: [] }, // Основной игрок
       ],
       deck: this.createDeck(),
-      trumpSuit: 'Eichel',
-      playerPoints: [0, 0, 0, 0],
     };
   },
   methods: {
@@ -79,7 +108,7 @@ export default {
     },
 
     playCard(card) {
-      console.log('Karte gespielt:', card);
+      console.log('Played card:', card);
       // Логика обработки сыгранной карты
     },
   },
@@ -90,10 +119,6 @@ export default {
 </script>
 
 <style scoped>
-.player-column {
-  margin-bottom: 20px;
-}
-
 .card-button {
   width: 100%;
   margin: 5px 0;
