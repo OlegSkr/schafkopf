@@ -25,7 +25,7 @@ jobs:
         run: npm run build
 
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@4.6.8  # Updated to a newer version
+        uses: JamesIves/github-pages-deploy-action@v4.6.8  # Updated to a newer version
 
         with:
           branch: gh-pages  # The branch the action will deploy to.
