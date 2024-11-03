@@ -139,7 +139,7 @@ export default {
       for (let i = 0; i < this.players.length; i++) {
         const player = this.players[i];
         // Prompt in German for ChatGPT
-        const prompt = `Neues Spiel, Spieler ${player.name} hat die Karten: ${player.hand.map(card => `${card.rank} ${card.suit}`).join(', ')}. Soll er spielen?`;
+        const prompt = `Neues Spiel, Spieler ${player.name} hat die Karten: ${player.hand.map(card => `${card.rank} ${card.suit}`).join(', ')}. Welches Spiel soll er spielen und warum?`;
 
         try {
           const response = await axios.post('https://api.openai.com/v1/chat/completions', {
@@ -156,7 +156,13 @@ export default {
           this.responses[i] = response.data.choices[0].message.content;
         } catch (error) {
           console.error(`Error requesting response for ${player.name}:`, error);
-          this.responses[i] = 'Fehler beim Abrufen der Antwort.'; // Error message in German
+          // Check if the error is a 429 error
+          if (error.response && error.response.status === 429) {
+            // If 429 error, set the prompt as the response
+            this.responses[i] = `ChatGPT prompt: ${prompt}`; // Updated response for rate limiting
+          } else {
+            this.responses[i] = 'Fehler beim Abrufen der Antwort.'; // General error message in German
+          }
         }
       }
     },
