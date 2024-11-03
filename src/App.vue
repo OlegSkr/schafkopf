@@ -1,13 +1,11 @@
 <template>
   <v-app>
-    <v-container>
-      <v-toolbar color="primary" dark>
+    <v-container fluid class="app-container">
+      <v-toolbar color="primary" dark class="toolbar">
         <v-toolbar-title>Schafkopf Spiel</v-toolbar-title>
       </v-toolbar>
-      <v-row justify="center">
-        <v-col cols="12" sm="8" md="6">
-          <schafkopf-game />
-        </v-col>
+      <v-row justify="center" class="game-row">
+        <schafkopf-game />
       </v-row>
     </v-container>
   </v-app>
@@ -29,7 +27,18 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+.app-container {
+  padding: 0; /* Убираем внутренние отступы */
+  margin: 0; /* Убираем внешние отступы */
+}
+
+.toolbar {
+  width: 100%; /* Убедитесь, что toolbar занимает всю ширину */
+}
+
+.game-row {
+  width: 100%; /* Устанавливаем ширину для v-row, чтобы она занимала всю ширину */
 }
 </style>
-
