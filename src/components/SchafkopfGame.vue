@@ -156,9 +156,9 @@ export default {
           this.responses[i] = response.data.choices[0].message.content;
         } catch (error) {
           console.error(`Error requesting response for ${player.name}:`, error);
-          // Check if the error is a 429 error
-          if (error.response && error.response.status === 429) {
-            // If 429 error, set the prompt as the response
+          // Check if the error is a 429 or 401 error
+          if (error.response && (error.response.status === 429 || error.response.status === 401)) {
+            // If 429 or 401 error, set the prompt as the response
             this.responses[i] = `ChatGPT prompt: ${prompt}`; // Updated response for rate limiting
           } else {
             this.responses[i] = 'Fehler beim Abrufen der Antwort.'; // General error message in German
