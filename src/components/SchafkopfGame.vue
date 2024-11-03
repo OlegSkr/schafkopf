@@ -139,7 +139,7 @@ export default {
       for (let i = 0; i < this.players.length; i++) {
         const player = this.players[i];
         // Prompt in German for ChatGPT
-        const prompt = `Neues Spiel, Spieler ${player.name} hat die Karten: ${player.hand.map(card => `${card.rank} ${card.suit}`).join(', ')}. Welches Spiel soll er spielen und warum?`;
+        const prompt = `Neues Schafkopf Spiel, Spieler ${player.name} hat die Karten: ${player.hand.map(card => `${card.rank} ${card.suit}`).join(', ')}. Welches Spiel soll er spielen und warum?`;
 
         try {
           const response = await axios.post('https://api.openai.com/v1/chat/completions', {
